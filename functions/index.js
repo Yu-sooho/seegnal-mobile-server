@@ -9,7 +9,7 @@ exports.addMessage = functions.https.onRequest(async (req, res) => {
     // Grab the text parameter.
     const original = req?.query?.text1;
     const original2 = req?.query?.text2;
-    console.log(original)
+    console.log(req.method)
     res.json(original+original2)
     // Push the new message into Firestore using the Firebase Admin SDK.
     // const writeResult = await admin.firestore().collection('messages').add({original: original});
