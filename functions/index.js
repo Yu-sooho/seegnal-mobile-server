@@ -5,15 +5,12 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.addMessage = functions.https.onRequest(async (req, res) => {
-    // Grab the text parameter.
-    const original = req?.query?.text1;
-    const original2 = req?.query?.text2;
-    console.log(req.method)
-    res.json(original+original2)
-    // Push the new message into Firestore using the Firebase Admin SDK.
-    // const writeResult = await admin.firestore().collection('messages').add({original: original});
-    // Send back a message that we've successfully written the message
-    // res.json({result: `Message with ID: ${writeResult.id} added.`});
-  });
-  
+const authStore = require('./src')
+
+//회원가입
+exports.kakaoRegist = authStore.signup.kakaoRegist
+exports.googleRegist = authStore.signup.googleRegist
+exports.appleRegist = authStore.signup.appleRegist
+
+//로그인
+exports.tokenLogin = authStore.signin.tokenLogin
